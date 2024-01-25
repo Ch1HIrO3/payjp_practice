@@ -1,0 +1,26 @@
+<%# 複数のビューで使用する場合は全てに記述を行うかapplication.html.erbに記述する %>
+<%= include_gon %>
+
+<%= form_with  model: @order, id: 'charge-form', class: 'card-form',local: true do |f| %>
+  <%= render 'layouts/error_messages', model: @order %>
+  <div class='form-wrap'>
+    <%= f.label :price, "金額" %>
+    <%= f.text_field :price, class:"price", placeholder:"例)2000" %>
+  </div>
+  <div class='form-wrap'>
+    <p>カード番号</p>
+    <%# id固定"number-form" %>
+    <div id="number-form" class="input-default"></div>
+  </div>
+  <div class='form-wrap'>
+    <p>期限</p>
+    <%# id固定"expiry-form" %>
+    <div id="expiry-form" class="input-default"></div>
+  </div>
+  <div class='form-wrap'>
+    <p>カード背面4桁もしくは3桁の番号</p>
+    <%# id固定"cvc-form" %>
+    <div id="cvc-form" class="input-default"></div>
+  </div>
+  <%= f.submit "購入", class:"button", id: "button" %>
+<% end %>
